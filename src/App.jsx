@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Grid from "./components/Grid";
+import Controls from "./components/Controls";
+import { speciesTypes } from "./Utils/simulationRules";
+import "./styles/Main.scss";
 
-function App() {
+const App = () => {
+  const [gridData, setGridData] = useState(
+    Array(20).fill().map(() => Array(20).fill(speciesTypes.ALGAE))
+  );
+
+  useEffect(() => {
+    // Initialize grid with random species as an example
+    const initialGrid = gridData.map(row =>
+      row.map(() => {
+        const species = [
+          speciesTypes.SEA_STAR,
+          speciesTypes.SEA_URCHIN,
+          speciesTypes.MUSSEL,
+          speciesTypes.SEA_ANEMONE,
+          speciesTypes.ALGAE
+        ];
+        return species[Math.floor(Math.random() * species.length)];
+      })
+    );
+    setGridData(initialGrid);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Controls />
+      <Grid gridData={gridData} />
     </div>
   );
-}
+};
 
 export default App;
+
