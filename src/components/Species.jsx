@@ -1,7 +1,8 @@
+// src/components/Species.jsx
 import React from "react";
 import "../styles/Species.scss";
 
-const Species = ({ speciesType }) => {
+const Species = React.memo(({ speciesType }) => {
   let speciesClass = "";
 
   switch (speciesType) {
@@ -15,7 +16,7 @@ const Species = ({ speciesType }) => {
   }
 
   return <div className={`species ${speciesClass}`}></div>;
-};
+});
 
 export default Species;
 

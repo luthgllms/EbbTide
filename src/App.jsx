@@ -1,25 +1,41 @@
+// src/App.jsx
 import React, { useState, useEffect } from "react";
 import Controls from "./components/Controls";
 import Graph from "./components/Graph";
 import Grid from "./components/Grid";
-import { initializeGrid, applyBehaviorRules } from "./Utils/simulationRules";
+import { initializeGrid, applyBehaviorRules, countSpecies } from "./Utils/simulationRules";
 import "./styles/Main.scss";
 
 const App = () => {
-  const [gridData, setGridData] = useState([]);  // Initialize as an empty array
+  const [gridData, setGridData] = useState([]);
   const [isRunning, setIsRunning] = useState(false);
   const [populationData, setPopulationData] = useState([]);
 
   useEffect(() => {
+    // Initialize the grid once when the component mounts
     const initialGrid = initializeGrid(20, 20, { seaStar: 5, seaUrchin: 10 });
-    setGridData(initialGrid);  // Set the grid data once initialized
+    setGridData(initialGrid);
   }, []);
 
   useEffect(() => {
     if (isRunning) {
+      // Set an interval to update the simulation every 1000 ms (adjustable)
       const interval = setInterval(() => {
-        setGridData(prevGrid => applyBehaviorRules(prevGrid));
+        setGridData((prevGrid) => {
+          const newGrid = applyBehaviorRules(prevGrid);
+
+          // Update population data every 5 intervals (for graph updates)
+          if (Math.random() < 0.2) { // 20% chance to update
+            setPopulationData((prevData) => [
+              ...prevData,
+              { seaStar: countSpecies(newGrid, "seaStar"), seaUrchin: countSpecies(newGrid, "seaUrchin") },
+            ]);
+          }
+
+          return newGrid;
+        });
       }, 1000);
+
       return () => clearInterval(interval);
     }
   }, [isRunning]);
@@ -27,13 +43,12 @@ const App = () => {
   const handleStart = () => setIsRunning(true);
   const handlePause = () => setIsRunning(false);
   const handleReset = () => {
-    const resetGrid = initializeGrid(20, 20, { seaStar: 5, seaUrchin: 10 });
-    setGridData(resetGrid);
+    setGridData(initializeGrid(20, 20, { seaStar: 5, seaUrchin: 10 }));
     setPopulationData([]);
   };
 
   const handleSpeciesChange = (species, count) => {
-    // Update species count logic if needed
+    // Logic to update species count if needed
   };
 
   return (
@@ -59,3 +74,4 @@ const App = () => {
 };
 
 export default App;
+
