@@ -1,9 +1,20 @@
+// src/components/Controls.jsx
 import React, { useState } from "react";
 import "../styles/Controls.scss";
 
-const Controls = ({ onStart, onPause, onReset, onSpeciesChange, onEventTrigger }) => {
-  const [seaStarCount, setSeaStarCount] = useState(5);
-  const [seaUrchinCount, setSeaUrchinCount] = useState(10);
+const Controls = ({ onStart, onPause, onReset, onSpeciesChange }) => {
+  const [seaStarInput, setSeaStarInput] = useState(5);
+  const [seaUrchinInput, setSeaUrchinInput] = useState(10);
+
+  const handleSeaStarChange = (e) => {
+    setSeaStarInput(e.target.value);
+    onSpeciesChange("seaStar", e.target.value);
+  };
+
+  const handleSeaUrchinChange = (e) => {
+    setSeaUrchinInput(e.target.value);
+    onSpeciesChange("seaUrchin", e.target.value);
+  };
 
   return (
     <div className="controls">
@@ -17,30 +28,22 @@ const Controls = ({ onStart, onPause, onReset, onSpeciesChange, onEventTrigger }
         Sea Stars:
         <input
           type="number"
-          value={seaStarCount}
-          onChange={(e) => {
-            setSeaStarCount(e.target.value);
-            onSpeciesChange("seaStar", e.target.value);
-          }}
+          value={seaStarInput}
+          onChange={handleSeaStarChange}
         />
       </label>
       <label>
         Sea Urchins:
         <input
           type="number"
-          value={seaUrchinCount}
-          onChange={(e) => {
-            setSeaUrchinCount(e.target.value);
-            onSpeciesChange("seaUrchin", e.target.value);
-          }}
+          value={seaUrchinInput}
+          onChange={handleSeaUrchinChange}
         />
       </label>
-
-      <h3>Environmental Events</h3>
-      <button onClick={() => onEventTrigger("hurricane")}>Trigger Hurricane</button>
-      <button onClick={() => onEventTrigger("pollution")}>Increase Pollution</button>
     </div>
   );
 };
 
 export default Controls;
+
+

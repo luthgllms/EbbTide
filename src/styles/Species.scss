@@ -9,6 +9,12 @@
   
     &.sea-star {
       background-color: coral;
+      border-radius: 50%;       // Circular shape for visual distinction
+    }
+  
+    &.sea-urchin {
+      background-color: lightgreen;
+      border-radius: 50%;       // Circular shape
     }
   
     &.herbivore {
@@ -27,4 +33,5 @@
       background-color: green;
     }
   }
+  
   

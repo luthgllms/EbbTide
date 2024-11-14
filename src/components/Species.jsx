@@ -12,11 +12,13 @@ const Species = React.memo(({ speciesType }) => {
     case "seaUrchin":
       speciesClass = "sea-urchin";
       break;
-    // Add more species classes as needed
+    // Add other species classes as needed
   }
 
   return <div className={`species ${speciesClass}`}></div>;
 });
 
 export default Species;
+
+
 
