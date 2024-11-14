@@ -1,4 +1,4 @@
-// // src/App.jsx
+// src/App.jsx
 // import React, { useState, useEffect } from "react";
 // import Controls from "./components/Controls";
 // import Graph from "./components/Graph";
@@ -23,9 +23,19 @@
 //       const interval = setInterval(() => {
 //         setGridData((prevGrid) => {
 //           const newGrid = applyBehaviorRules(prevGrid);
+
+//           // Update populationData for the graph every interval
+//           setPopulationData((prevData) => [
+//             ...prevData,
+//             {
+//               seaStar: countSpecies(newGrid, "seaStar"),
+//               seaUrchin: countSpecies(newGrid, "seaUrchin"),
+//             },
+//           ]);
+
 //           return newGrid;
 //         });
-//       }, 500); // Update every 500 ms for smoother interaction animation
+//       }, 1000); // Update every second
 
 //       return () => clearInterval(interval);
 //     }
@@ -36,7 +46,7 @@
 //   const handleReset = () => {
 //     const resetGrid = initializeGrid(20, 20, { seaStar: seaStarCount, seaUrchin: seaUrchinCount });
 //     setGridData(resetGrid);
-//     setPopulationData([]);
+//     setPopulationData([]); // Clear population data on reset
 //   };
 
 //   return (
@@ -88,7 +98,7 @@ const App = () => {
         setGridData((prevGrid) => {
           const newGrid = applyBehaviorRules(prevGrid);
 
-          // Update populationData for the graph every interval
+          // Update population data for the graph
           setPopulationData((prevData) => [
             ...prevData,
             {
@@ -99,7 +109,7 @@ const App = () => {
 
           return newGrid;
         });
-      }, 1000); // Update every second
+      }, 1000);
 
       return () => clearInterval(interval);
     }
@@ -110,7 +120,7 @@ const App = () => {
   const handleReset = () => {
     const resetGrid = initializeGrid(20, 20, { seaStar: seaStarCount, seaUrchin: seaUrchinCount });
     setGridData(resetGrid);
-    setPopulationData([]); // Clear population data on reset
+    setPopulationData([]);
   };
 
   return (
@@ -135,6 +145,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 

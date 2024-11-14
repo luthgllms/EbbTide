@@ -1,37 +1,58 @@
+// .species {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//     height: 100%;
+//     border: 1px solid #ccc; // Optional, adds borders to each grid cell
+//     font-size: 0.8em;
+  
+//     &.sea-star {
+//       background-color: coral;
+//       border-radius: 50%;       // Circular shape for visual distinction
+//     }
+  
+//     &.sea-urchin {
+//       background-color: lightgreen;
+//       border-radius: 50%;       // Circular shape
+//     }
+  
+//     &.herbivore {
+//       background-color: lightgreen;
+//     }
+  
+//     &.filter-feeder {
+//       background-color: lightblue;
+//     }
+  
+//     &.anemone {
+//       background-color: purple;
+//     }
+  
+//     &.algae {
+//       background-color: green;
+//     }
+//   }
+
+// src/styles/Species.scss
 .species {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #ccc; // Optional, adds borders to each grid cell
-    font-size: 0.8em;
+    border: 1px solid #ccc;
   
     &.sea-star {
       background-color: coral;
-      border-radius: 50%;       // Circular shape for visual distinction
+      border-radius: 50%;
     }
   
     &.sea-urchin {
       background-color: lightgreen;
-      border-radius: 50%;       // Circular shape
-    }
-  
-    &.herbivore {
-      background-color: lightgreen;
-    }
-  
-    &.filter-feeder {
-      background-color: lightblue;
-    }
-  
-    &.anemone {
-      background-color: purple;
-    }
-  
-    &.algae {
-      background-color: green;
+      border-radius: 50%;
     }
   }
+  
   
   
